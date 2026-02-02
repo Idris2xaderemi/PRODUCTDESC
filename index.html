@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+
+    <title>Document</title>
+  </head>
+  <body onload="displayproductt()" class="containe">
+    <style>
+      /* body {
+        background-color: lightcyan;
+      } */
+
+      input {
+        width: 300px;
+        height: 40px;
+        text-align: center;
+      }
+
+      input {
+        color: #8707ff;
+        border: 2px solid #8707ff;
+        border-radius: 10px;
+        padding: 10px 25px;
+        background: white;
+        max-width: 300px;
+        height: 50px;
+        width: 300px;
+      }
+
+      input:active {
+        box-shadow: 2px 2px 15px #8707ff inset;
+      }
+
+      button {
+        padding: 1.3em 3em;
+        font-size: 15px;
+        text-transform: uppercase;
+        letter-spacing: 2.5px;
+        font-weight: 500;
+        color: rgb(134, 182, 182);
+        background-color: #fff;
+        border: none;
+        border-radius: 45px;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease 0s;
+        cursor: pointer;
+        outline: none;
+      }
+
+      button:hover {
+        background-color: rgb(134, 182, 182);
+        box-shadow: 0px 15px 20px rgb(134, 182, 182);
+        color: #fff;
+        transform: translateY(-7px);
+      }
+
+      button:active {
+        transform: translateY(-1px);
+      }
+
+    .containe {
+    width: 100%;
+    height: 100%;
+    --color: rgb(134, 182, 182);
+    background: linear-gradient(95deg, var(--color) 25%, transparent 25%) -50px 0,
+          linear-gradient(-15deg, var(--color) 25%, transparent 25%) -50px 0,
+          linear-gradient(25deg, transparent 75%, var(--color) 75%) -50px 0,
+          linear-gradient(-45deg, transparent 75%, var(--color) 75%) -50px 0,
+          linear-gradient(-15deg, transparent 75%, var(--color) 75%) -50px 0;
+    background-color: rgb(98, 119, 119);
+    background-size: 40px 40px;
+  }
+
+  /* From Uiverse.io by Pravins01 */ 
+   .card {
+  position: relative;
+  width: 350px;
+  height: 450px;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding: 16px;
+  gap: 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  color: white;
+}
+
+/* Gradient border */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  left: -6px;
+  margin: auto;
+  width: 362px;
+  height: 462px;
+  border-radius: 14px;
+  background: linear-gradient(-45deg, #bfbcc2 0%, rgb(134, 182, 182) 100%);
+  z-index: -10;
+  pointer-events: none;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Glow */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(-45deg, #bfbcc2 0%, rgb(134, 182, 182)100%);
+  transform: scale(0.96);
+  filter: blur(26px);
+}
+
+/* Text */
+.heading {
+  font-size: 22px;
+  text-transform: capitalize;
+  font-weight: 700;
+}
+
+.card p:not(.heading) {
+  font-size: 15px;
+}
+
+.card p:last-child {
+  color: #e81cff;
+  font-weight: 600;
+}
+
+/* Hover effects */
+.card:hover::after {
+  filter: blur(36px);
+}
+
+.card:hover::before {
+  transform: rotate(-90deg) scaleX(1.32) scaleY(0.78);
+}
+
+
+    </style>
+    <div
+      class="d-flex justify-content-center align-items-center flex-column"
+      style="
+        margin-top: 10%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 10px;
+      "
+    >
+      <input
+        type="text"
+        name=""
+        id="prodName"
+        placeholder="product Name"
+        style="margin-bottom: 10px"
+      />
+      <input
+        type="text"
+        name=""
+        id="prodPrice"
+        placeholder="product price"
+        style="margin-bottom: 10px"
+      />
+      <input
+        type="text"
+        name=""
+        id="prodQuan"
+        placeholder="product quantity"
+        style="margin-bottom: 10px"
+      />
+      <input
+        type="text"
+        name=""
+        id="prodImg"
+        placeholder="product image"
+        style="margin-bottom: 10px"
+      />
+      <input
+        type="text"
+        name=""
+        id="prodDesc"
+        placeholder="product description"
+        style="margin-bottom: 10px"
+      />
+      <button onclick="productnames()">Submit product</button>
+      <div class="my-3 fw-semibold fs-2" style="color: aqua;"><span id="codeval">0</span> <span>product(s) added</span></div>
+
+
+      <div
+        id="result"
+        style="margin: 4.5%; color: #8707ff; font-size: 20px"
+        class="d-flex flex-wrap justify-content-center allign-items-center gap-5"
+      ></div>
+
+      <div>
+        <button class="btn-lg btn-dark" onclick="deletelast()">
+          Delete Last
+        </button>
+        <button class="btn-lg btn-dark" onclick="addfirst()">Add First</button>
+        <button class="btn-lg btn-dark" onclick="removefirst()">
+          Delete First
+        </button>
+        <button
+          type="button"
+          class="btn-lg btn-dark"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Delete All
+        </button>
+
+        <!-- modal -->
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Delete All Product(s)
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body" style="color: #8707ff; font-size: 20px">
+                Are you sure you want to delete all product(s)?
+              </div>
+              <div class="modal-footer">
+                <button type="button" data-bs-dismiss="modal">No</button>
+                <button
+                  type="button"
+                  onclick="deleteall()"
+                  data-bs-dismiss="modal"
+                >
+                  Yes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- 
+
+    <div  class="card" style="width: 18rem; ">
+      <p class="heading">
+        Popular this month
+      </p>
+      <p>
+        Powered By
+      </p>
+      <p>Uiverse
+    </p></div> -->
+
+
+    <script>
+      let productarray = [];
+
+      function productnames() {
+        if (
+          prodName.value == "" ||
+          prodPrice.value == "" ||
+          prodQuan.value == "" ||
+          prodImg.value == "" ||
+          prodDesc.value == ""
+        ) {
+          alert("Product entity cannot be empty");
+        } else {
+          let prodObj = {
+            productName: prodName.value,
+            productPrice: prodPrice.value,
+            productQuantity: prodQuan.value,
+            productImage: prodImg.value,
+            productDescription: prodDesc.value,
+          };
+
+          productarray.push(prodObj);
+          saveToLocal();
+
+          console.log(productarray);
+
+          prodName.value = "";
+          prodPrice.value = "";
+          prodQuan.value = "";
+          prodImg.value = "";
+          prodDesc.value = "";
+
+          displayprod();
+          productCounter();
+        }
+      }
+
+      function productCounter() {
+        codeval = document.getElementById("codeval");
+        codeval.innerHTML = productarray.length;
+      }
+
+      function deletelast() {
+        productarray.pop();
+        console.log(productarray);
+        displayprod();
+      }
+
+      function displayprod() {
+        result.innerHTML = "";
+        for (let i = 0; i < productarray.length; i++) {
+          result.innerHTML +=  `<div  class="card" ">
+                       <img class="card-img-top h-50 mt-3" src="${productarray[i].productImage}" alt="Card image cap">
+                        <div class="card-body">
+                          <h5 class="card-title" style="color: rgb(134, 182, 182); font-size: 20px">${productarray[i].productName}</h5>
+                           <p class="card-text mb-5" style="color: rgb(134, 182, 182); font-size: 20px">${productarray[i].productDescription}</p>
+                           <div class="d-flex flex-row">
+                              <button onclick="deleteitem(${i})" class="mt-auto bottom-0"  >🗑</button>
+                               <button onclick="edititem(${i})" class="mt-auto bottom-0">Edit</button>                         
+                           </div>
+               </div>
+                  </div>`
+                          
+          
+          
+          
+          
+          // `<div class="card" style="width: 18rem; ">
+          //               <img class="card-img-top h-50" src="${productarray[i].productImage}" alt="Card image cap">
+          //               <div class="card-body">
+          //                 <h5 class="card-title" style="color: #a748f5; font-size: 20px">${productarray[i].productName}</h5>
+          //                 <p class="card-text mb-5" style="color: #a748f5; font-size: 20px">${productarray[i].productDescription}</p>
+          //                 <div class="d-flex flex-row">
+          //                     <button onclick="deleteitem(${i})" class="mt-auto bottom-0"  >🗑</button>
+          //                     <button onclick="edititem(${i})" class="mt-auto bottom-0">Edit</button>                         
+          //                 </div>
+          //               </div>`;
+
+          console.log(productarray);
+        }
+      }
+
+      function addfirst() {
+        productarray.unshift(prodName.value);
+        console.log(productarray);
+        saveToLocal();
+        displayprod();
+      }
+
+      function removefirst() {
+        productarray.shift(prodName.value);
+        console.log(productarray);
+        displayprod();
+        document.getElementById("prodName").value = "";
+
+        codeval = document.getElementById("codeval");
+        codeval.innerHTML = productarray.length;
+      }
+
+      function deleteall() {
+        productarray = [];
+        console.log(productarray);
+        displayprod();
+        saveToLocal();
+        document.getElementById("prodName").value = "";
+
+        codeval = document.getElementById("codeval");
+        codeval.innerHTML = productarray.length;
+      }
+
+      function deleteitem(index) {
+        productarray.splice(index, 1);
+        console.log(productarray);
+        saveToLocal();
+        displayprod();
+      }
+
+      function edititem(index) {
+        let newname = prompt(
+          "Enter the new product name",
+          productarray[index].productName,
+        );
+        let newprice = prompt(
+          "Enter the new product price",
+          productarray[index].productPrice,
+        );
+        let newimg = prompt(
+          "Enter the new product image",
+          productarray[index].productImage,
+        );
+        let newquant = prompt(
+          "Enter the new product quantity",
+          productarray[index].productQuantity,
+        );
+        let newdesc = prompt(
+          "Enter the new product descrip",
+          productarray[index].productDescription,
+        );
+
+        if (newname == null || newname == "") {
+          displayprod();
+        } else {
+          productarray.splice(index, 1, {
+            productName: newname,
+            productPrice: newprice,
+            productImage: newimg,
+            productQuantity: newquant,
+            productDescription: newdesc,
+          });
+          saveToLocal();
+          displayprod();
+        }
+      }
+
+      function saveToLocal() {
+        let prodToSave = JSON.stringify(productarray);
+        localStorage.setItem("prodString", prodToSave);
+        productCounter();
+      }
+
+      function displayproductt() {
+        let prodToSave = localStorage.getItem("prodString");
+        let convObj = JSON.parse(prodToSave);
+        productarray = convObj;
+        productCounter();
+        displayprod();
+      }
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
